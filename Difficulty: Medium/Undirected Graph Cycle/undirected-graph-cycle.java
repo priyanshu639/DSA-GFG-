@@ -25,12 +25,34 @@ class Solution {
         boolean vis[]=new boolean[V];
         for(int i=0;i<V;i++){
             if(!vis[i]){
-                if(bfs(i,vis,ll)) return true;
+                // if(bfs(i,vis,ll)) return true;
+                if(dfs(i,-1,vis,ll)) return true;
                 
             }
         }
         return false;
         
+        
+    }
+    
+    public boolean dfs(int start,int parent,boolean vis[],List<List<Integer>> ll){
+       
+        vis[start]=true;
+            for(int ele:ll.get(start)){
+                if(!vis[ele]){
+                    if(dfs(ele,start,vis,ll)){
+                        return true;
+                    }
+                    
+                }
+                else if(ele!=parent){
+                    return true;
+                }
+            
+            
+            
+        }
+        return false;
         
     }
     
